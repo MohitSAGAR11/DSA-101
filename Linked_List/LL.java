@@ -128,5 +128,19 @@ package Linked_List;
         }
         return null;
     }
-   
+    
+    public void Recursive_Insert(int val , int index){
+        head = Recursive_Insert(val , index , head);
+    }
+
+    private Node Recursive_Insert(int val , int index , Node node){
+        if(index == 0){
+            Node newNode = new Node(val , node);
+            size++;
+            return newNode;
+        }
+
+        node.next = Recursive_Insert(val , index-- , node.next);
+        return node;
+    }
 }
