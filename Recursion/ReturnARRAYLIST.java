@@ -22,5 +22,5 @@ public class ReturnARRAYLIST {
 
 
     //Return the list but don't take it as an argument;
-    static 
+    
 }

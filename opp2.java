@@ -1,48 +1,74 @@
-
-class student{
-    String name;
-    String rollno;
-    String phone;
-    String m1;
-    String m2;
-    String m3;
-    student(String a , String b , String c){
-        a = name;
-        b = rollno;
-        c = phone;
-    }
+// Parent Class: Event
+abstract class Event {
+    String eventName;
+    String location;
+    int pricePerTicket;
     
-    
-void print(){
-    System.out.print(name);
-    System.out.print(rollno);
-    System.out.print(phone);
+    void displayEventDetails(){};
 }
-    public double getCGR(){
-    
-            return (getRating(m1)*4 + getRating(m2)*3 + getRating(m3)*3)/10.0;
-        
-    }
 
-    public int getRating(String g){
-        if(g.equals("A*")){
-            return 10;
-        }
-        else{
-            return 9;
-        }
-    }
-
+// Child Class: Concert
+class Concert extends Event {
+    String performerName;
     
+    Concert(String eventName , String location , int pricePerTicket , String performerName){
+        this.eventName = eventName;
+        this.location = location;
+        this.pricePerTicket = pricePerTicket;
+        this.performerName = performerName;
+    }
+    @Override
+    public void displayEventDetails(){
+        System.out.println("Event: " + this.eventName);
+        System.out.println("Location: " + this.location);
+        System.out.println("Performer: " + this.performerName);
+        System.out.println("Price per Ticket: $" + this.pricePerTicket);
+    }
 }
-public class opp2 {
-    public static void main(String[] args) {
-        student s1 = new student("Mohit" , "10622" , "7007085013");
-        s1.m1 = "A*";
-        s1.m2 = "A*";
-        s1.m3 = "A*"; 
 
-        System.out.println(s1.getCGR());
-               
+// Child Class: StandUpShow
+class StandUpShow extends Event {
+    String comedianName;
+    
+    StandUpShow(String eventName , String location , int pricePerTicket , String comedianName){
+        this.eventName = eventName;
+        this.location = location;
+        this.pricePerTicket = pricePerTicket;
+        this.comedianName = comedianName;
     }
+    @Override
+    public void displayEventDetails(){
+        System.out.println("Event: " + this.eventName);
+        System.out.println("Location: " + this.location);
+        System.out.println("Comedian: " + this.comedianName);
+        System.out.println("Price per Ticket: $" + this.pricePerTicket);
+    }
+}
+
+// Supporting Class: TicketBooking
+class TicketBooking {
+    String bookingID;
+    String customerName;
+    Event event;
+    int ticketsBooked;
+    int totalAmount;
+    
+    TicketBooking( String bookingID , String customerName , Event event , int ticketsBooked){
+        this.bookingID = bookingID;
+        this.customerName = customerName;
+        this.event = event;
+        this.ticketsBooked = ticketsBooked;
+    }
+    public void calculateTotal(){
+        this.totalAmount = this.ticketsBooked * event.pricePerTicket;
+    }
+    
+    public void displayBookingDetails(){
+        System.out.println("Booking ID: " + this.bookingID);
+        System.out.println("Customer: " + this.customerName);
+        System.out.println("Event: " + this.event.eventName);
+        System.out.println("Tickets Booked: " + this.ticketsBooked);
+        System.out.println("Total Amount: $" + this.totalAmount);
+    }
+   
 }
