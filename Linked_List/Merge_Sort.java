@@ -53,4 +53,16 @@ public class Merge_Sort {
         midPrev.next = null;
         return mid;
     }
+
+    ListNode middle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
 }
