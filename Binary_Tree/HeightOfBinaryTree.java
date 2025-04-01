@@ -13,7 +13,7 @@ public class HeightOfBinaryTree {
     }
 
     public static int height(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null) return 0;  // for edges use -1;
         
         int leftHeight = height(root.left);
         int rightHeight = height(root.right);
