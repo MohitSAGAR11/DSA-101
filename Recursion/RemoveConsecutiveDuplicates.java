@@ -8,8 +8,20 @@ public class RemoveConsecutiveDuplicates {
         System.out.println(removeConsecutiveDuplicates(s));
     }
 
-    // reomve consecutive duplicates from a string recursively
+    
     public static String removeConsecutiveDuplicates(String s) {
-       
+       Stack<Character> st = new Stack<>();
+       for(char ch : s.toCharArray()){
+           if(st.isEmpty() || st.peek() != ch){
+               st.push(ch);
+           }else{
+               st.pop();
+           }
+       }
+       StringBuilder sb = new StringBuilder();
+       while(!st.isEmpty()){
+           sb.append(st.pop());
+       }
+       return sb.reverse().toString();
     }
 }
